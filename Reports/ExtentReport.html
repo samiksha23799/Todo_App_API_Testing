@@ -1,0 +1,1590 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--
+			ExtentReports Library 2.41.1 | http://relevantcodes.com/extentreports-for-selenium/ | https://github.com/anshooarora/
+			Copyright (c) 2015, Anshoo Arora (Relevant Codes) | Copyrights licensed under the New BSD License | http://opensource.org/licenses/BSD-3-Clause
+			Documentation: http://extentreports.relevantcodes.com 
+		-->
+
+		<meta charset='UTF-8' /> 
+		<meta name='description' content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
+		<meta name='robots' content='noodp, noydir' />
+		<meta name='viewport' content='width=device-width, initial-scale=1' />
+		<meta name='extentx' id='extentx' content='' />
+		
+		<title>
+				ExtentReports 2.0
+		</title>
+		
+		
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+		<link href='https://cdn.rawgit.com/anshooarora/extentreports/6032d73243ba4fe4fb8769eb9c315d4fdf16fe68/cdn/extent.css' type='text/css' rel='stylesheet' />
+		
+		<style>
+				
+            
+                
+            
+        
+		</style>
+	</head>
+	
+	
+	<body class='extent default standard hide-overflow'>
+		<!-- nav -->
+		<nav>
+			<div class='logo-container blue darken-2'>
+				<a class='logo-content' href='http://extentreports.relevantcodes.com'>
+					<span>ExtentReports</span>
+				</a>
+				<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i class='mdi-navigation-apps'></i></a>
+			</div>
+			<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+				<li class='analysis waves-effect active'><a href='#!' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
+				<li class='analysis waves-effect'>
+					<a href='#!' onclick="_updateCurrentStage(-1)" class='dashboard-view'><i class='mdi-action-track-changes'></i></i>Analysis</a>
+				</li>
+			</ul>
+			<span class='report-name'>Automation Report</span> <span class='report-headline'></span>
+			<ul class='right hide-on-med-and-down nav-right'>
+				<li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");' title='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");'>
+					<i class='mdi-hardware-desktop-windows'></i>
+				</li>
+				<li>
+					<span class='suite-started-time'>2021-07-21 21:44:59</span>
+				</li>
+				<li>
+					<span>v2.41.1</span>
+				</li>
+			</ul>
+		</nav>
+		<!-- /nav -->
+		
+		<!-- container -->
+		<div class='container'>
+			
+			<!-- dashboard -->
+			<div id='dashboard-view' class='row'>
+				<div class='time-totals'>
+					<div class='col l2 m4 s6'>
+						<div class='card suite-total-tests'> 
+							<span class='panel-name'>Total Tests</span> 
+							<span class='total-tests'> <span class='panel-lead'></span> </span> 
+						</div> 
+					</div>
+					<div class='col l2 m4 s6'>
+						<div class='card suite-total-steps'> 
+							<span class='panel-name'>Total Steps</span> 
+							<span class='total-steps'> <span class='panel-lead'></span> </span> 
+						</div> 
+					</div>
+					<div class='col l2 m4 s12'>
+						<div class='card suite-total-time-current'> 
+							<span class='panel-name'>Total Time Taken (Current Run)</span> 
+							<span class='suite-total-time-current-value panel-lead'>0h 0m 9s+520ms</span> 
+						</div> 
+					</div>
+					<div class='col l2 m4 s12'>
+						<div class='card suite-total-time-overall'> 
+							<span class='panel-name'>Total Time Taken (Overall)</span> 
+							<span class='suite-total-time-overall-value panel-lead'>0h 0m 9s+520ms</span> 
+						</div> 
+					</div>
+					<div class='col l2 m4 s6 suite-start-time'>
+						<div class='card accent green-accent'> 
+							<span class='panel-name'>Start</span> 
+							<span class='panel-lead suite-started-time'>2021-07-21 21:44:50</span> 
+						</div> 
+					</div>
+					<div class='col l2 m4 s6 suite-end-time'>
+						<div class='card accent pink-accent'> 
+							<span class='panel-name'>End</span> 
+							<span class='panel-lead suite-ended-time'>2021-07-21 21:44:59</span> 
+						</div> 
+					</div>
+				</div>
+				<div class='charts'>
+					<div class='col s12 m6 l4 fh'> 
+						<div class='card-panel'> 
+							<div>
+								<span class='panel-name'>Tests View</span>
+							</div> 
+							<div class='panel-setting modal-trigger test-count-setting right'>
+								<a href='#test-count-setting'><i class='mdi-navigation-more-vert text-md'></i></a>
+							</div> 
+							<div class='chart-box'>
+								<canvas class='text-centered' id='test-analysis'></canvas>
+							</div> 
+							<div>
+								<span class='weight-light'><span class='t-pass-count weight-normal'></span> test(s) passed</span>
+							</div> 
+							<div>
+								<span class='weight-light'><span class='t-fail-count weight-normal'></span> test(s) failed, <span class='t-others-count weight-normal'></span> others</span>
+							</div> 
+						</div> 
+					</div> 
+					<div class='col s12 m6 l4 fh'> 
+						<div class='card-panel'> 
+							<div>
+								<span class='panel-name'>Steps View</span>
+							</div> 
+							<div class='panel-setting modal-trigger step-status-filter right'>
+								<a href='#step-status-filter'><i class='mdi-navigation-more-vert text-md'></i></a>
+							</div> 
+							<div class='chart-box'>
+								<canvas class='text-centered' id='step-analysis'></canvas>
+							</div> 
+							<div>
+								<span class='weight-light'><span class='s-pass-count weight-normal'></span> step(s) passed </span>
+							</div> 
+							<div>
+								<span class='weight-light'><span class='s-fail-count weight-normal'></span> step(s) failed, <span class='s-others-count weight-normal'></span> others</span>
+							</div> 
+						</div> 
+					</div>
+					<div class='col s12 m12 l4 fh'> 
+						<div class='card-panel'> 
+							<span class='panel-name'>Pass Percentage</span> 
+							<span class='pass-percentage panel-lead'></span> 
+							<div class='progress light-blue lighten-3'> 
+								<div class='determinate light-blue'></div> 
+							</div> 
+						</div> 
+					</div>
+				</div>
+				<div class='system-view'>
+					<div class='col l4 m12 s12'>
+						<div class='card-panel'>
+							<span class='label info outline right'>Environment</span>
+							<table>
+								<thead>
+									<tr>
+										<th>Param</th>
+										<th>Value</th>
+									</tr>
+								</thead>
+								<tbody>
+										<tr>
+											<td>User Name</td>
+											<td>samikshagupta</td>
+										</tr>
+										<tr>
+											<td>OS</td>
+											<td>Windows 10</td>
+										</tr>
+										<tr>
+											<td>Java Version</td>
+											<td>1.8.0_291</td>
+										</tr>
+										<tr>
+											<td>Host Name</td>
+											<td>samikshagupta</td>
+										</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /dashboard -->
+			
+			<!-- tests -->
+			<div id='test-view' class='row _addedTable'>
+				<div class='col _addedCell1'>
+					<div class='contents'>
+						<div class='card-panel heading'>
+							<h5>Tests</h5>
+						</div>
+						<div class='card-panel filters'>
+							<div>
+								<a class='dropdown-button btn-floating btn-small waves-effect waves-light grey tests-toggle' data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#'>
+									<i class='mdi-action-reorder'></i>
+								</a>
+								<ul id='tests-toggle' class='dropdown-content'>
+									<li class='pass'><a href='#!'>Pass</a></li>
+									<li class='fail'><a href='#!'>Fail</a></li>
+									<li class='skip'><a href='#!'>Skip</a></li>
+									<li class='divider'></li>
+									<li class='clear'><a href='#!'>Clear Filters</a></li>
+								</ul>
+							</div>
+							<div>
+								<a class='btn-floating btn-small waves-effect waves-light grey' id='clear-filters' alt='Clear Filters' title='Clear Filters'>
+									<i class='mdi-navigation-close'></i>
+								</a>
+							</div>
+							<div>
+								<a class='btn-floating btn-small waves-effect waves-light grey' id='enableDashboard' alt='Enable Dashboard' title='Enable Dashboard'>
+									<i class='mdi-action-track-changes'></i>
+								</a>
+							</div>
+							<div>
+								<a class='btn-floating btn-small waves-effect waves-light blue enabled' id='refreshCharts' alt='Refresh Charts on Filters' title='Refresh Charts on Filters'>
+									<i class='mdi-navigation-refresh'></i>
+								</a>
+							</div>
+							<div class='search' alt='Search Tests' title='Search Tests'>
+								<div class='input-field left'>
+									<input id='searchTests' type='text' class='validate' placeholder='Search Tests...'>
+								</div>
+								<a href="#" class='btn-floating btn-small waves-effect waves-light grey'>
+									<i class='mdi-action-search'></i>
+								</a>
+							</div>
+						</div>
+						<div class='card-panel no-padding-h no-padding-v no-margin-v'>
+							<div class='wrapper'>
+								<ul id='test-collection' class='test-collection'>
+										<li class='collection-item test displayed active pass ' extentid='abd954ff-0330-4937-8937-5b998a3aa8e6'>
+											<div class='test-head'>
+												<span class='test-name'>Valid Scenario:Get Access Token </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:51</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:55</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 3s+960ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:51</td>
+																	<td class='step-details'>Request Sent to get token:- io.restassured.internal.RequestSpecificationImpl@4b1d6571</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:54</td>
+																	<td class='step-details'>Response received:- {"jwt":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NCwiaWF0IjoxNjI2ODg0MDk0fQ.9jBmiYN3r3Plu8NSoAvx33Ey1Kx30mSAq_P6quaAnuc"}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Token created:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NCwiaWF0IjoxNjI2ODg0MDk0fQ.9jBmiYN3r3Plu8NSoAvx33Ey1Kx30mSAq_P6quaAnuc</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='9cdcefe5-78c6-4911-846e-c6f601c93ba4'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario : Get Access Token - When user enters the wrong password. </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:55</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:55</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+204ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Request Sent to get token:- io.restassured.internal.RequestSpecificationImpl@54e3658c</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Response received:- {"timestamp":"2021-07-21T16:14:55.352+00:00","status":403,"error":"Forbidden","path":"/authenticate"}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>HTTP Status Code:- 403</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='1c0ae0c0-9398-4871-a2cc-1655ed684bbe'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario : Get Access Token - When user enters the invalid password and username. </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:55</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:55</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+82ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Request Sent to get token:- io.restassured.internal.RequestSpecificationImpl@3e33d73e</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Response received:- {"timestamp":"2021-07-21T16:14:55.415+00:00","status":403,"error":"Forbidden","path":"/authenticate"}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>HTTP Status Code:- 403</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='64d05f2d-08ce-4dc1-83d6-9ef942249d30'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario : Get Access Token - When user enters the invalid username. </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:55</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:55</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+49ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Request Sent to get token:- io.restassured.internal.RequestSpecificationImpl@6dfa915a</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Response received:- {"timestamp":"2021-07-21T16:14:55.489+00:00","status":403,"error":"Forbidden","path":"/authenticate"}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>HTTP Status Code:- 403</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='457a9f67-23b8-4f34-bb36-f91cca9609e1'>
+											<div class='test-head'>
+												<span class='test-name'>Valid Scenario- Create User </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:55</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:55</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+259ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@79b84841</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NSwiaWF0IjoxNjI2ODg0MDk1fQ._W1WIfl7ebleAW0JNb1TJumKvvLQ9Fhu5RX0dULbLUs</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Request Sent to Create User :- io.restassured.internal.RequestSpecificationImpl@59072e9d</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Response received to create User:- {"request":"fail","task":{"id":5,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":3,"email":"samiksha@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Samiksha","lastName":"Gupta"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MDk5OTM4LCJpYXQiOjE2MjY4ODM5Mzh9.Ri7JjzD3QBaNvLtyZ7tCVteKrb7oU4PW3di0E1E_k80","message":"User Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='535b122f-6e0d-43c7-944b-4df590002588'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario: Create User - with Invalid Email </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:55</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:56</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+261ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@65e21ce3</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NSwiaWF0IjoxNjI2ODg0MDk1fQ._W1WIfl7ebleAW0JNb1TJumKvvLQ9Fhu5RX0dULbLUs</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:55</td>
+																	<td class='step-details'>Request Sent to Create User :- io.restassured.internal.RequestSpecificationImpl@77b919a3</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Response received to create User:- {"request":"fail","task":{"id":5,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":3,"email":"samiksha@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Samiksha","lastName":"Gupta"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MDk5OTM4LCJpYXQiOjE2MjY4ODM5Mzh9.Ri7JjzD3QBaNvLtyZ7tCVteKrb7oU4PW3di0E1E_k80","message":"User Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='499f9035-132f-47cc-a705-b8b3ae4017d4'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario: Create User - with Invalid FirstName </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:56</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:56</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+283ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@5dd903be</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NiwiaWF0IjoxNjI2ODg0MDk2fQ.EhLGVDEf0K2j31ui3SSB1b8-eYxqv1tUl2irty8ef8A</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Request Sent to Create User :- io.restassured.internal.RequestSpecificationImpl@119aa36</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Response received to create User:- {"request":"fail","task":{"id":5,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":3,"email":"samiksha@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Samiksha","lastName":"Gupta"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MDk5OTM4LCJpYXQiOjE2MjY4ODM5Mzh9.Ri7JjzD3QBaNvLtyZ7tCVteKrb7oU4PW3di0E1E_k80","message":"User Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='4217dc1e-49c1-4d19-9e96-19c579b7ce73'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario: Create User - with Invalid LastName </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:56</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:56</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+224ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@698fee9a</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NiwiaWF0IjoxNjI2ODg0MDk2fQ.EhLGVDEf0K2j31ui3SSB1b8-eYxqv1tUl2irty8ef8A</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Request Sent to Create User :- io.restassured.internal.RequestSpecificationImpl@715b886f</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Response received to create User:- {"request":"fail","task":{"id":5,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":3,"email":"samiksha@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Samiksha","lastName":"Gupta"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MDk5OTM4LCJpYXQiOjE2MjY4ODM5Mzh9.Ri7JjzD3QBaNvLtyZ7tCVteKrb7oU4PW3di0E1E_k80","message":"User Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='284858a0-bc9e-44d2-85d7-76ebf0c18523'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario: Create User - with Invalid Password </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:56</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:56</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+240ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@44f24a20</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NiwiaWF0IjoxNjI2ODg0MDk2fQ.EhLGVDEf0K2j31ui3SSB1b8-eYxqv1tUl2irty8ef8A</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Request Sent to Create User :- io.restassured.internal.RequestSpecificationImpl@237f7970</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Response received to create User:- {"request":"fail","task":{"id":5,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":3,"email":"samiksha@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Samiksha","lastName":"Gupta"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MDk5OTM4LCJpYXQiOjE2MjY4ODM5Mzh9.Ri7JjzD3QBaNvLtyZ7tCVteKrb7oU4PW3di0E1E_k80","message":"User Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='99c4b1b4-a2c8-454d-a04e-b7844ad683f9'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario-Login User With invalid password </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:56</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:57</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+301ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@6c0e13b7</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NiwiaWF0IjoxNjI2ODg0MDk2fQ.EhLGVDEf0K2j31ui3SSB1b8-eYxqv1tUl2irty8ef8A</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:56</td>
+																	<td class='step-details'>Request Sent to Login User :- io.restassured.internal.RequestSpecificationImpl@c755b2</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Response received for login:- {"request":"fail","task":{"id":5,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":3,"email":"samiksha@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Samiksha","lastName":"Gupta"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MDk5OTM4LCJpYXQiOjE2MjY4ODM5Mzh9.Ri7JjzD3QBaNvLtyZ7tCVteKrb7oU4PW3di0E1E_k80","message":"User Logged-in Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Received User Token:- eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MDk5OTM4LCJpYXQiOjE2MjY4ODM5Mzh9.Ri7JjzD3QBaNvLtyZ7tCVteKrb7oU4PW3di0E1E_k80</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='c2d627e5-ef9d-409f-aebb-45fc9837d77f'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario-Login User With invalid email </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:57</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:57</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+271ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@29149030</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NywiaWF0IjoxNjI2ODg0MDk3fQ.KEe9OQX8T_dfTjkZm4zHKZGGKCzJttzOX3P0KnBG5tU</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Request Sent to Login User :- io.restassured.internal.RequestSpecificationImpl@6edf29c1</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Response received for login:- {"request":"fail","task":{"id":5,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":3,"email":"samiksha@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Samiksha","lastName":"Gupta"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MDk5OTM4LCJpYXQiOjE2MjY4ODM5Mzh9.Ri7JjzD3QBaNvLtyZ7tCVteKrb7oU4PW3di0E1E_k80","message":"User Logged-in Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Received User Token:- eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MDk5OTM4LCJpYXQiOjE2MjY4ODM5Mzh9.Ri7JjzD3QBaNvLtyZ7tCVteKrb7oU4PW3di0E1E_k80</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='1b25f07c-ec64-4cf2-9214-82c4d54da82c'>
+											<div class='test-head'>
+												<span class='test-name'>Valid Scenario- Login User </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:57</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:57</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+239ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@8bd86c8</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NywiaWF0IjoxNjI2ODg0MDk3fQ.KEe9OQX8T_dfTjkZm4zHKZGGKCzJttzOX3P0KnBG5tU</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Request Sent to Login User :- io.restassured.internal.RequestSpecificationImpl@59696551</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Response received for login:- {"request":"success","task":{"id":5,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":3,"email":"samiksha@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Samiksha","lastName":"Gupta"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk3LCJpYXQiOjE2MjY4ODQwOTd9.iNLKvk63JG5kJK5wqnmtEaAW7_P_FobYUnIqiJwL4a0","message":"User Logged-in Successfully","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Received User Token:- eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk3LCJpYXQiOjE2MjY4ODQwOTd9.iNLKvk63JG5kJK5wqnmtEaAW7_P_FobYUnIqiJwL4a0</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='c4143917-7ed4-47e5-bf1e-63552c2425e3'>
+											<div class='test-head'>
+												<span class='test-name'>Task Controller- Create Task </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:57</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:58</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+429ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@7b122839</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5NywiaWF0IjoxNjI2ODg0MDk3fQ.KEe9OQX8T_dfTjkZm4zHKZGGKCzJttzOX3P0KnBG5tU</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Request Sent to Login User :- io.restassured.internal.RequestSpecificationImpl@2eeb0f9b</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Response received for login:- {"request":"success","task":{"id":5,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":3,"email":"samiksha@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Samiksha","lastName":"Gupta"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk3LCJpYXQiOjE2MjY4ODQwOTd9.iNLKvk63JG5kJK5wqnmtEaAW7_P_FobYUnIqiJwL4a0","message":"User Logged-in Successfully","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>User Token:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk3LCJpYXQiOjE2MjY4ODQwOTd9.iNLKvk63JG5kJK5wqnmtEaAW7_P_FobYUnIqiJwL4a0</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:57</td>
+																	<td class='step-details'>Request Sent to create Task:- io.restassured.internal.RequestSpecificationImpl@46aa712c</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response received to create the task:- {"request":"success","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk3LCJpYXQiOjE2MjY4ODQwOTd9.iNLKvk63JG5kJK5wqnmtEaAW7_P_FobYUnIqiJwL4a0","message":"Task Created Successfully","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response :- {"request":"success","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk3LCJpYXQiOjE2MjY4ODQwOTd9.iNLKvk63JG5kJK5wqnmtEaAW7_P_FobYUnIqiJwL4a0","message":"Task Created Successfully","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='2e3789bd-ad04-4a12-9777-61b5429d6b16'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario- With invalid email </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:58</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:58</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+292ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@26d41711</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5OCwiaWF0IjoxNjI2ODg0MDk4fQ.S2C24mKr4Ihqk45PLbaluUJvP_GjrMR1312lSMPztCQ</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Request Sent to Login User :- io.restassured.internal.RequestSpecificationImpl@7a8b9166</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response received for login:- {"request":"success","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI","message":"User Logged-in Successfully","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>User Token:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Request Sent to create Task:- io.restassured.internal.RequestSpecificationImpl@4af45442</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response received to create the task:- {"request":"fail","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI","message":"Task Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response :- {"request":"fail","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI","message":"Task Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='16030af9-ec60-498b-86ad-3ec5a34d104d'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario- Create Task With invalid priority (Priority must be between 1-10) </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:58</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:58</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+255ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@2bc426f0</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5OCwiaWF0IjoxNjI2ODg0MDk4fQ.S2C24mKr4Ihqk45PLbaluUJvP_GjrMR1312lSMPztCQ</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Request Sent to Login User :- io.restassured.internal.RequestSpecificationImpl@1f53481b</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response received for login:- {"request":"success","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI","message":"User Logged-in Successfully","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>User Token:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Request Sent to create Task:- io.restassured.internal.RequestSpecificationImpl@4b0f2299</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response received to create the task:- {"request":"fail","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI","message":"Task Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response :- {"request":"fail","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI","message":"Task Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='59611050-6196-48da-8ae3-13dcf7b5d003'>
+											<div class='test-head'>
+												<span class='test-name'>Invalid Scenario- Create Task With invalid taskname </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:58</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:58</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+273ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@512575e9</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5OCwiaWF0IjoxNjI2ODg0MDk4fQ.S2C24mKr4Ihqk45PLbaluUJvP_GjrMR1312lSMPztCQ</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Request Sent to Login User :- io.restassured.internal.RequestSpecificationImpl@424de326</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response received for login:- {"request":"success","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI","message":"User Logged-in Successfully","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>User Token:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Request Sent to create Task:- io.restassured.internal.RequestSpecificationImpl@4c2af006</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response received to create the task:- {"request":"fail","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI","message":"Task Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Response :- {"request":"fail","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk4LCJpYXQiOjE2MjY4ODQwOTh9.OTzkyuxFoQoJo6FQk_RqXd1VsTOfkdFQ0BJ4TJk6fYI","message":"Task Creation Failed ...","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='4ea4101b-c03d-4ed4-ae71-7bb24198c62a'>
+											<div class='test-head'>
+												<span class='test-name'>Valid Scenario: Edit Task </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:58</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:59</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+297ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:58</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@4364712f</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5OSwiaWF0IjoxNjI2ODg0MDk5fQ.uZw730jXRbKRl93yJgpXz20B5rakG9yWDNdSpiACAo4</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Request Sent to Login User :- io.restassured.internal.RequestSpecificationImpl@5d8ab698</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Response received for login:- io.restassured.internal.RestAssuredResponseImpl@429f7919</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>User Token:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk5LCJpYXQiOjE2MjY4ODQwOTl9.829Nf7fyb8kbjfRnRoX_vIFXq3tIl-DRdabaBl4hzMU</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>User Token:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk5LCJpYXQiOjE2MjY4ODQwOTl9.829Nf7fyb8kbjfRnRoX_vIFXq3tIl-DRdabaBl4hzMU</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>User Token:-  7</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Request Sent to edit Task:- io.restassured.internal.RequestSpecificationImpl@57435801</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Response received to edit the task:- {"request":"success","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk5LCJpYXQiOjE2MjY4ODQwOTl9.829Nf7fyb8kbjfRnRoX_vIFXq3tIl-DRdabaBl4hzMU","message":"Task Edited Successfully","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class='collection-item test displayed active pass ' extentid='d8489236-bae7-4e97-ac8a-950ea8503ac9'>
+											<div class='test-head'>
+												<span class='test-name'>Valid Scenario: Delete Task </span>
+												<span class='test-status label right outline capitalize pass'>pass</span>
+												<span class='category-assigned hide '></span>
+											</div>
+											<div class='test-body'>
+												<div class='test-info'>
+													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2021-07-21 21:44:59</span>
+													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2021-07-21 21:44:59</span>
+													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 0s+289ms</span>
+												</div>
+												<div class='test-desc'></div>
+												<div class='test-attributes'>
+												</div>
+												<div class='test-steps'>
+													<table class='bordered table-results'>
+														<thead>
+															<tr>
+																<th>Status</th>
+																<th>Timestamp</th>
+																<th>Details</th>
+															</tr>
+														</thead>
+														<tbody>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Request Sent to to get access Token:- io.restassured.internal.RequestSpecificationImpl@366d8b97</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Token Used:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b2RvbGlzdCIsImV4cCI6MTYyNzEwMDA5OSwiaWF0IjoxNjI2ODg0MDk5fQ.uZw730jXRbKRl93yJgpXz20B5rakG9yWDNdSpiACAo4</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Request Sent to Login User :- io.restassured.internal.RequestSpecificationImpl@68ac9ec5</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Response received for login:- {
+    "request": "success",
+    "task": {
+        "id": 7,
+        "taskName": "Sample Task 1",
+        "dueDate": "2021-09-14",
+        "priority": 8,
+        "user": {
+            "id": 6,
+            "email": "raj.arora@gmail.com",
+            "password": "UXdlcnR5QDEyMw==",
+            "firstName": "Raj",
+            "lastName": "Arora"
+        }
+    },
+    "jwtToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk5LCJpYXQiOjE2MjY4ODQwOTl9.829Nf7fyb8kbjfRnRoX_vIFXq3tIl-DRdabaBl4hzMU",
+    "message": "User Logged-in Successfully",
+    "user": {
+        "id": 6,
+        "email": "raj.arora@gmail.com",
+        "password": "UXdlcnR5QDEyMw==",
+        "firstName": "Raj",
+        "lastName": "Arora"
+    }
+}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>User Token:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk5LCJpYXQiOjE2MjY4ODQwOTl9.829Nf7fyb8kbjfRnRoX_vIFXq3tIl-DRdabaBl4hzMU</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>User Token:-  7</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Request Sent to delete Task:- io.restassured.internal.RequestSpecificationImpl@44ed0a8f</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Response received to delete the task:- {"request":"success","task":{"id":7,"taskName":"Sample Task 1","dueDate":"2021-09-14","priority":8,"user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}},"jwtToken":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWouYXJvcmFAZ21haWwuY29tIiwiZXhwIjoxNjI3MTAwMDk5LCJpYXQiOjE2MjY4ODQwOTl9.829Nf7fyb8kbjfRnRoX_vIFXq3tIl-DRdabaBl4hzMU","message":"Task deleted Successfully","user":{"id":6,"email":"raj.arora@gmail.com","password":"UXdlcnR5QDEyMw==","firstName":"Raj","lastName":"Arora"}}</td>
+																</tr>
+																<tr>
+																	<td class='status info' title='info' alt='info'><i class='mdi-action-info-outline'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>HTTP Status Code:- 200</td>
+																</tr>
+																<tr>
+																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+																	<td class='timestamp'>21:44:59</td>
+																	<td class='step-details'>Test case passed successfully</td>
+																</tr>
+														</tbody>
+													</table>
+													<ul class='collapsible node-list' data-collapsible='accordion'>
+													</ul>
+												</div>
+											</div>
+										</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id='test-details-wrapper' class='col _addedCell2'>
+					<div class='contents'>
+						<div class='card-panel details-view'>
+							<h5 class='details-name'></h5>
+							<div class='step-filters right'>
+								<span class='btn-floating btn-small waves-effect waves-light blue' status='info' alt='info' title='info'><i class='mdi-action-info-outline'></i></span>
+								<span class='btn-floating btn-small waves-effect waves-light green' status='pass' alt='pass' title='pass'><i class='mdi-action-check-circle'></i></span>
+								<span class='btn-floating btn-small waves-effect waves-light red' status='fail' alt='fail' title='fail'><i class='mdi-navigation-cancel'></i></span>
+								<span class='btn-floating btn-small waves-effect waves-light red darken-4' status='fatal' alt='fatal' title='fatal'><i class='mdi-navigation-cancel'></i></span>
+								<span class='btn-floating btn-small waves-effect waves-light red lighten-2' status='error' alt='error' title='error'><i class='mdi-alert-error'></i></span>
+								<span class='btn-floating btn-small waves-effect waves-light orange' alt='warning' status='warning' title='warning'><i class='mdi-alert-warning'></i></span>
+								<span class='btn-floating btn-small waves-effect waves-light cyan' status='skip' alt='skip' title='skip'><i class='mdi-content-redo'></i></span>
+								<span class='btn-floating btn-small waves-effect waves-light grey darken-2' status='clear-step-filter' alt='Clear filters' title='Clear filters'><i class='mdi-content-clear'></i></span>
+							</div>
+							<div class='details-container'>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /tests -->
+			
+			<!-- categories -->
+			<!-- /categories -->
+			
+			<!-- exceptions -->
+			<!-- /exceptions -->
+			
+			<!-- testrunner logs -->
+			<!-- /testrunner logs -->
+			
+		</div>
+		<!-- /container -->
+		
+		<!-- test dashboard counts setting -->
+		<div id='test-count-setting' class='modal bottom-sheet'> 
+			<div class='modal-content'> 
+				<h5>Configure Tests Count Setting</h5> 
+				<input name='test-count-setting' type='radio' id='parentWithoutNodes' class='with-gap'> 
+				<label for='parentWithoutNodes'>Parent Tests Only (Does not include child nodes in counts)</label> 
+				<br> 
+				<input name='test-count-setting' type='radio' id='parentWithoutNodesAndNodes' class='with-gap'> 
+				<label for='parentWithoutNodesAndNodes'>Parent Tests Without Child Tests + Child Tests</label> 
+				<br> 
+				<input name='test-count-setting' type='radio' id='childNodes' class='with-gap'> 
+				<label for='childNodes'>Child Tests Only</label> 
+			</div> 
+			<div class='modal-footer'> 
+				<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+			</div> 
+		</div>
+		<!-- /test dashboard counts setting -->
+		
+		<!-- filter for step status -->
+		<div id='step-status-filter' class='modal bottom-sheet'> 
+			<div class='modal-content'> 
+				<h5>Select status</h5> 
+				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-pass'> 
+				<label for='step-dashboard-filter-pass'>Pass</label> 
+				<br> 
+				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fail'> 
+				<label for='step-dashboard-filter-fail'>Fail</label> 
+				<br> 
+				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fatal'> 
+				<label for='step-dashboard-filter-fatal'>Fatal</label> 
+				<br> 
+				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-error'> 
+				<label for='step-dashboard-filter-error'>Error</label> 
+				<br> 
+				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-warning'> 
+				<label for='step-dashboard-filter-warning'>Warning</label> 
+				<br> 
+				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-skip'> 
+				<label for='step-dashboard-filter-skip'>Skipped</label> 
+				<br> 
+				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-info'> 
+				<label for='step-dashboard-filter-info'>Info</label> 
+				<br> 
+				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-unknown'> 
+				<label for='step-dashboard-filter-unknown'>Unknown</label> 
+			</div>
+			<div class='modal-footer'> 
+				<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+			</div> 
+		</div>
+		<!-- /filter for step status -->
+		
+		<script src='https://cdn.rawgit.com/anshooarora/extentreports/6032d73243ba4fe4fb8769eb9c315d4fdf16fe68/cdn/extent.js' type='text/javascript'></script>
+
+		<script>$(document).ready(function() { $('.logo span').html('ExtentReports'); });</script>
+		<script>
+				
+            
+                $(document).ready(function() {
+                    
+                });
+            
+        
+		</script>
+	</body>
+</html>
