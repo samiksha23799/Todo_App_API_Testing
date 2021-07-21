@@ -56,8 +56,8 @@ public class EditTask extends BaseTest {
 		// get the User Token
 		JsonPath jp2 = ReusableMethods.rawToJson(response);
 		taskid = jp2.get("task.id");
-		log.info("Received User Token" + taskid);
-		extentTest.log(LogStatus.INFO, "User Token:-  " + taskid);
+		log.info("Received Task ID" + taskid);
+		extentTest.log(LogStatus.INFO, "Task ID:-  " + taskid);
 
 		// Response to edit the task
 		response = HttpOperation.edit_Task(authToken, PayLoads.edittask_Payload(userToken, taskid,sheetName, testName));
