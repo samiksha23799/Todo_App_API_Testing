@@ -58,7 +58,7 @@ public class FetchTask_By_ID extends BaseTest {
 		extentTest.log(LogStatus.INFO, "TASK ID :-  " + taskid);
 
 		// Response to edit the task
-		response = HttpOperation.fetch_Task_by_ID(taskid,authToken, PayLoads.fetchAllTask(userToken, task_sheetName, task_testName));
+		response = HttpOperation.fetch_Task_by_ID(taskid, authToken, userToken, task_sheetName, task_testName);
 		log.info("Response received to get all the user task");
 		extentTest.log(LogStatus.INFO, "Response received to get all the user task:- " + response.asString());
 

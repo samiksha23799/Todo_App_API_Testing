@@ -50,7 +50,7 @@ public class Fetch_All_Task extends BaseTest {
 		extentTest.log(LogStatus.INFO, "User Token:-  " + userToken);
 
 		// Response to edit the task
-		response = HttpOperation.fetch_Task(authToken, PayLoads.fetchAllTask(userToken, task_sheetName, task_testName));
+		response = HttpOperation.fetch_Task(authToken, userToken, task_sheetName, task_testName);
 		log.info("Response received to get all the user task");
 		extentTest.log(LogStatus.INFO, "Response received to get all the user task:- " + response.asString());
 
@@ -89,7 +89,7 @@ public class Fetch_All_Task extends BaseTest {
 		extentTest.log(LogStatus.INFO, "User Token:-  " + userToken);
 
 		// Response to edit the task
-		response = HttpOperation.fetch_Task(authToken, PayLoads.fetchAllTask(userToken, task_sheetName, task_testName));
+		response = HttpOperation.fetch_Task(authToken, userToken, task_sheetName, task_testName);
 		log.info("Response received to get all the user task");
 		extentTest.log(LogStatus.INFO, "Response received to get all the user task:- " + response.asString());
 

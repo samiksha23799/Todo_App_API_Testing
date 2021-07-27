@@ -124,28 +124,7 @@ public class PayLoads extends BaseTest {
 	}
 
 	// Delete Task
-	public static Map<String, Object> deletetask_Payload(String user_token,int taskid, String sheetName, String testName) {
-
-		// Fetching Data from Excel File
-		HashMap<String, String> testData = new HashMap<String, String>();
-		testData = CommonUtils.reader.getRowTestData(sheetName, testName);
-		String executionRequired = testData.get("Execution Required").toLowerCase();
-		String email = testData.get("Email");
-		CommonUtils.toCheckExecutionRequired(executionRequired);
-		log.info(testData);
-
-		// Converting the data into JSON format
-		Map<String, Object> jsonBody = new HashMap<String, Object>();
-		jsonBody.put("jwt", user_token);
-		jsonBody.put("id",taskid);	
-		jsonBody.put("email", email);
-
-		return jsonBody;
-	}
-	
-	// Fetch all user task
-	
-	public static Map<String, Object> fetchAllTask(String user_token, String sheetName, String testName) {
+	public static Map<String, Object> deletetask_Payload(String user_token, String sheetName, String testName) {
 
 		// Fetching Data from Excel File
 		HashMap<String, String> testData = new HashMap<String, String>();
@@ -162,4 +141,5 @@ public class PayLoads extends BaseTest {
 
 		return jsonBody;
 	}
+	
 }

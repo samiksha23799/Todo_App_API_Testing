@@ -1,20 +1,22 @@
-2021-07-27 11:54:08,199  INFO [main] BaseTest:66 - Report Started
- 2021-07-27 11:54:08,522  INFO [main] BaseTest:59 - 
+2021-07-27 16:42:50,807  INFO [main] BaseTest:66 - Report Started
+ 2021-07-27 16:42:51,508  INFO [main] BaseTest:59 - 
 ============ New Test Case==============
 
- 2021-07-27 11:54:08,525  INFO [main] FetchTask_By_ID:32 - Valid Scenario: Fetch All User Task
- 2021-07-27 11:54:08,878  INFO [main] BaseTest:24 - Username:-  todolist
- 2021-07-27 11:54:08,878  INFO [main] BaseTest:25 - Password:- password
- 2021-07-27 11:54:08,974  INFO [main] HttpOperation:22 - Request Sent to to get access Token
- 2021-07-27 11:54:10,490  INFO [main] BaseTest:73 - {password=Qwerty@123, email=ross.gellar@gmail.com}
- 2021-07-27 11:54:10,490  INFO [main] HttpOperation:56 - Request Sent to Login User
- 2021-07-27 11:54:10,523  INFO [main] FetchTask_By_ID:42 - Response received for login
- 2021-07-27 11:54:10,535  INFO [main] FetchTask_By_ID:48 - Received User Token:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NzLmdlbGxhckBnbWFpbC5jb20iLCJleHAiOjE2Mjc1ODMwNTAsImlhdCI6MTYyNzM2NzA1MH0.jJvGkNkoG6iZT-5uvWGkSo0mQsd9T3M4pMt12WtXYNk
- 2021-07-27 11:54:10,549  INFO [main] BaseTest:90 - {=, Email=ross.gellar@gmail.com, Execution Required=yes, TaskName=Sample Task 1, Priority=8.0, TestCaseName=Valid Scenario- When all the data are valid, Duedate=9/15/21}
- 2021-07-27 11:54:10,550  INFO [main] HttpOperation:75 - Request Sent to create Task
- 2021-07-27 11:54:10,588  INFO [main] FetchTask_By_ID:57 - Received Task ID:-  23
- 2021-07-27 11:54:10,589  INFO [main] BaseTest:156 - {=, Email=ross.gellar@gmail.com, Execution Required=yes, TaskName=Sample Task 1, Priority=8.0, TestCaseName=Valid Scenario- When all the data are valid, Duedate=9/15/21}
- 2021-07-27 11:54:10,590  INFO [main] HttpOperation:139 - Request Sent to fetch all user Task
- 2021-07-27 11:54:10,624  INFO [main] FetchTask_By_ID:62 - Response received to get all the user task
- 2021-07-27 11:54:10,625  INFO [main] FetchTask_By_ID:67 - Assertion Passed!!
+ 2021-07-27 16:42:51,516  INFO [main] EditTask:32 - Valid Scenario: Edit Task
+ 2021-07-27 16:42:52,265  INFO [main] BaseTest:24 - Username:-  todolist
+ 2021-07-27 16:42:52,265  INFO [main] BaseTest:25 - Password:- password
+ 2021-07-27 16:42:52,474  INFO [main] HttpOperation:22 - Request Sent to to get access Token
+ 2021-07-27 16:42:55,311  INFO [main] BaseTest:54 - {firstName=Ross, lastName=Gellar, password=Qwerty@123, email=ross.gellar@gmail.com}
+ 2021-07-27 16:42:55,312  INFO [main] HttpOperation:46 - Request Sent to Login User
+ 2021-07-27 16:42:55,362  INFO [main] EditTask:42 - Response received for login
+ 2021-07-27 16:42:55,388  INFO [main] EditTask:48 - Received User Token:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NzLmdlbGxhckBnbWFpbC5jb20iLCJleHAiOjE2Mjc2MDAzNzUsImlhdCI6MTYyNzM4NDM3NX0.UvItG7YDkJFkR8MR-VpaJ0HCGcEpEXSLjuPVzYbIiRQ
+ 2021-07-27 16:42:55,425  INFO [main] BaseTest:90 - {=, Email=ross.gellar@gmail.com, Execution Required=yes, TaskName=Sample Task 1, Priority=8.0, TestCaseName=Valid Scenario- When all the data are valid, Duedate=9/15/21}
+ 2021-07-27 16:42:55,425  INFO [main] HttpOperation:60 - Request Sent to create Task
+ 2021-07-27 16:42:55,502  INFO [main] EditTask:57 - Received Task ID:-  33
+ 2021-07-27 16:42:55,503  INFO [main] BaseTest:111 - {=, Email=ross.gellar@gmail.com, Execution Required=yes, TaskName=Sample Task 1, Priority=8.0, TestCaseName=Valid Scenario- When all the data are valid, Duedate=9/15/21}
+ 2021-07-27 16:42:55,505  INFO [main] HttpOperation:95 - Request Sent to edit Task
+ 2021-07-27 16:42:55,569  INFO [main] EditTask:63 - Response received for edit the task
+ 2021-07-27 16:42:55,571  INFO [main] EditTask:68 - Assertion Passed!!
+ 2021-07-27 16:42:55,578  INFO [main] HttpOperation:80 - Request Sent to delete Task
+ 2021-07-27 16:42:55,675  INFO [main] EditTask:73 - Response received for delete the task
  

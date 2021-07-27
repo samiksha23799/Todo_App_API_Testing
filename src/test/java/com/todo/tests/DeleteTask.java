@@ -56,8 +56,7 @@ public class DeleteTask extends BaseTest {
 		extentTest.log(LogStatus.INFO, "TASK ID :-  " + taskid);
 
 		// Response to delete the task
-		response = HttpOperation.delete_Task(authToken,
-				PayLoads.deletetask_Payload(userToken, taskid, sheetName, testName));
+		response = HttpOperation.delete_Task(taskid, authToken, userToken, sheetName, testName);
 		log.info("Response received for delete the task" + response.asString());
 		extentTest.log(LogStatus.INFO, "Response received for delete the task" + response.asString());
 
