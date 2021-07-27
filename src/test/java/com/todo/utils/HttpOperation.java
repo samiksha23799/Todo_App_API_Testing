@@ -28,6 +28,19 @@ public class HttpOperation extends BaseTest {
 		return response;
 	}
 
+// *******************************HELLO CONTROLLER************************
+	public static Response hello(String authToken) {
+		// getting response
+		RequestSpecification httpRequest = RestAssured.given();
+		log.info("Request Sent to Create User");
+		extentTest.log(LogStatus.INFO, "Request Sent to Create User :- " + httpRequest);
+		Response response = httpRequest.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + authToken).when()
+				.get(BaseTest.prop.getProperty("Hello_Endpoint")).then().log().all().extract().response();
+
+		return response;
+	}
+	
 //	****************************** USER CONTROLLER ************************
 	
 	public static Response createUser(String authToken, Map<String, Object> jsonBody) {
