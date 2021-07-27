@@ -16,14 +16,18 @@ public class HttpOperation extends BaseTest {
 	public static final Logger log = Logger.getLogger(HttpOperation.class);
 
 	// ****************AUTHENTICATION CONTROLLER*********************
-	public static Response createAuthToken() {
+	public static Response createAuthToken(Map<String, Object> jsonBody) {
 		// getting response
 		RequestSpecification httpRequest = RestAssured.given();
 		log.info("Request Sent to to get access Token");
 		extentTest.log(LogStatus.INFO, "Request Sent to to get access Token:- " + httpRequest);
-		Response response = httpRequest.body(PayLoads.createAuthToken_Payload())
-				.header("Content-Type", "application/json").when().post(BaseTest.prop.getProperty("Auth_EndPoint"))
-				.then().log().all().extract().response();
+		Response response = httpRequest
+				.body(jsonBody)
+				.header("Content-Type", "application/json")
+				.when()
+				.post(BaseTest.prop.getProperty("Auth_EndPoint"))
+				.then()
+				.log().all().extract().response();
 
 		return response;
 	}
@@ -96,7 +100,6 @@ public class HttpOperation extends BaseTest {
 
 		return response;
 	}
-
 	
 	public static Response edit_Task(String authToken,Map<String, Object> jsonBody) {
 		// getting response
@@ -108,6 +111,38 @@ public class HttpOperation extends BaseTest {
 				.header("Content-Type", "application/json")
 				.header("Authorization", "Bearer " + authToken).when()
 				.post(BaseTest.prop.getProperty("EditTask_EndPoint"))
+				.then()
+				.log().all().extract().response();
+
+		return response;
+	}
+	
+	public static Response fetch_Task(String authToken,Map<String, Object> jsonBody) {
+		// getting response
+		RequestSpecification httpRequest = RestAssured.given();
+		log.info("Request Sent to fetch all user Task");
+		extentTest.log(LogStatus.INFO, "Request Sent to fetch all user Task:- " + httpRequest);
+		Response response = httpRequest
+				.body(jsonBody)
+				.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + authToken).when()
+				.post(BaseTest.prop.getProperty("Fetch_All_Task"))
+				.then()
+				.log().all().extract().response();
+
+		return response;
+	}
+	
+	public static Response fetch_Task_by_ID(int taskID, String authToken,Map<String, Object> jsonBody) {
+		// getting response
+		RequestSpecification httpRequest = RestAssured.given();
+		log.info("Request Sent to fetch all user Task");
+		extentTest.log(LogStatus.INFO, "Request Sent to fetch all user Task:- " + httpRequest);
+		Response response = httpRequest
+				.body(jsonBody)
+				.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + authToken).when()
+				.post(BaseTest.prop.getProperty("Fetch_Task_By_ID")+taskID)
 				.then()
 				.log().all().extract().response();
 

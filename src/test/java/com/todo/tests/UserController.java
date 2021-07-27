@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
 import com.todo.utils.HttpOperation;
-import com.todo.utils.Invalid_Payloads;
 import com.todo.utils.PayLoads;
 import com.todo.utils.ReusableMethods;
 
@@ -16,6 +15,8 @@ import io.restassured.response.Response;
 public class UserController extends BaseTest {
 	public static final Logger log = Logger.getLogger(UserController.class);
 	public static String sheetName = "User_Payload";
+	public static String auth_sheetName = "Auth_Data";
+	public static String auth_valid_testName = "Valid Scenario- valid Username & Password";
 
 // ------------------VALID SCENARIO-----------------------------------
 
@@ -27,16 +28,23 @@ public class UserController extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Valid Scenario- Create User");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation
+				.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
+		// get the Token
+		JsonPath jsonresp = ReusableMethods.rawToJson(response);
+		authToken = jsonresp.get("jwt");
+		log.info("Token created");
+		extentTest.log(LogStatus.INFO, "Token created:-  " + authToken);
+
 		// response for creating the user
-		response = HttpOperation.createUser(authToken,PayLoads.create_user_Payload(sheetName, testName));
+		response = HttpOperation.createUser(authToken, PayLoads.create_user_Payload(sheetName, testName));
 		log.info("Response received to create User");
 		extentTest.log(LogStatus.INFO, "Response received to create User:- " + response.asString());
 
 		// Assertion
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 201);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 	}
@@ -49,7 +57,8 @@ public class UserController extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Valid Scenario- Login User");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation
+				.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
 		// response for login the user
@@ -80,7 +89,8 @@ public class UserController extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Invalid Scenario: Create User - with Invalid Email  ");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation
+				.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
 		// response for creating the user
@@ -89,7 +99,7 @@ public class UserController extends BaseTest {
 		extentTest.log(LogStatus.INFO, "Response received to create User:- " + response.asString());
 
 		// Assertion
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 406);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 	}
@@ -103,16 +113,17 @@ public class UserController extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Invalid Scenario: Create User - with Invalid FirstName  ");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation
+				.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
-		
+
 		// response for creating the user
 		response = HttpOperation.createUser(authToken, PayLoads.create_user_Payload(sheetName, testName));
 		log.info("Response received to create User");
 		extentTest.log(LogStatus.INFO, "Response received to create User:- " + response.asString());
 
 		// Assertion
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 406);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 	}
@@ -126,7 +137,8 @@ public class UserController extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Invalid Scenario: Create User - with Invalid LastName  ");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation
+				.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
 		// response for creating the user
@@ -135,7 +147,7 @@ public class UserController extends BaseTest {
 		extentTest.log(LogStatus.INFO, "Response received to create User:- " + response.asString());
 
 		// Assertion
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 406);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 
@@ -150,7 +162,8 @@ public class UserController extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Invalid Scenario: Create User - with Invalid Password  ");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation
+				.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
 		// response for creating the user
@@ -159,7 +172,7 @@ public class UserController extends BaseTest {
 		extentTest.log(LogStatus.INFO, "Response received to create User:- " + response.asString());
 
 		// Assertion
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 406);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 
@@ -174,7 +187,8 @@ public class UserController extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Invalid Scenario-Login User With invalid password");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation
+				.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
 		// response for login the user
@@ -182,14 +196,9 @@ public class UserController extends BaseTest {
 		log.info("Response received for login");
 		extentTest.log(LogStatus.INFO, "Response received for login:- " + response.asString());
 
-		/// get the Token
-		JsonPath jp = ReusableMethods.rawToJson(response);
-		userToken = jp.get("jwtToken");
-		log.info("Received User Token" + userToken);
-		extentTest.log(LogStatus.INFO, "Received User Token:- " + userToken);
 
 		// Assertion
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 401);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 	}
@@ -203,21 +212,17 @@ public class UserController extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Invalid Scenario-Login User With invalid email");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation
+				.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 		// response for login the user
 		response = HttpOperation.loginUser(authToken, PayLoads.login(sheetName, testName));
 		log.info("Response received for login");
 		extentTest.log(LogStatus.INFO, "Response received for login:- " + response.asString());
 
-		/// get the Token
-		JsonPath jp = ReusableMethods.rawToJson(response);
-		userToken = jp.get("jwtToken");
-		log.info("Received User Token" + userToken);
-		extentTest.log(LogStatus.INFO, "Received User Token:- " + userToken);
 
 		// Assertion
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 401);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 	}

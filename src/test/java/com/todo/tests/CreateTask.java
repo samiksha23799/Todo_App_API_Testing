@@ -1,4 +1,4 @@
-package com.todo.tests;
+ package com.todo.tests;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -15,6 +15,8 @@ import io.restassured.response.Response;
 public class CreateTask extends BaseTest {
 	public static String user_sheet = "User_Payload";
 	public static String sheetName = "Task_Payload";
+	public static String auth_sheetName = "Auth_Data";
+	public static String auth_valid_testName = "Valid Scenario- valid Username & Password";
 
 	public static final Logger log = Logger.getLogger(CreateTask.class);
 
@@ -26,7 +28,7 @@ public class CreateTask extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Task Controller- Create Task");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
 		// response for login the user
@@ -49,7 +51,7 @@ public class CreateTask extends BaseTest {
 
 		// Assertion
 
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 201);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 
@@ -65,7 +67,7 @@ public class CreateTask extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Invalid Scenario- With invalid email");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
 		// response for login the user
@@ -89,7 +91,7 @@ public class CreateTask extends BaseTest {
 
 		// Assertion
 
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 203);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 
@@ -104,7 +106,7 @@ public class CreateTask extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Invalid Scenario- Create Task With invalid taskname");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
 		// response for login the user
@@ -128,7 +130,7 @@ public class CreateTask extends BaseTest {
 
 		// Assertion
 
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 406);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 
@@ -143,7 +145,7 @@ public class CreateTask extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Invalid Scenario- Create Task With invalid priority (Priority must be between 1-10)");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
 		// response for login the user
@@ -167,7 +169,7 @@ public class CreateTask extends BaseTest {
 
 		// Assertion
 
-		Assert.assertEquals(response.getStatusCode(), 200);
+		Assert.assertEquals(response.getStatusCode(), 406);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 

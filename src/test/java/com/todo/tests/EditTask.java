@@ -18,6 +18,9 @@ public class EditTask extends BaseTest {
 
 	public static String sheetName = "Task_Payload";
 
+	public static String auth_sheetName = "Auth_Data";
+	public static String auth_valid_testName = "Valid Scenario- valid Username & Password";
+
 	public static final Logger log = Logger.getLogger(EditTask.class);
 
 //==========================     VALID TEST CASES - Edit Task      =============================
@@ -30,7 +33,8 @@ public class EditTask extends BaseTest {
 		// report generation start
 		extentTest = extent.startTest("Valid Scenario: Edit Task");
 
-		Response response = HttpOperation.createAuthToken();
+		Response response = HttpOperation
+				.createAuthToken(PayLoads.createAuthToken_Payload(extentTest, auth_sheetName, auth_valid_testName));
 		String authToken = ReusableMethods.Auth(extentTest, response);
 
 		// response for login the user
@@ -41,34 +45,36 @@ public class EditTask extends BaseTest {
 		// get the User Token
 		JsonPath jp = ReusableMethods.rawToJson(response);
 		userToken = jp.get("jwtToken");
-		log.info("Received User Token" + userToken);
+		log.info("Received User Token:-  " + userToken);
 		extentTest.log(LogStatus.INFO, "User Token:-  " + userToken);
+
+		// Creating the Task response
+		response = HttpOperation.create_Task(authToken, PayLoads.create_task_Payload(userToken, sheetName, testName));
 
 		// get the User Token
 		JsonPath jp1 = ReusableMethods.rawToJson(response);
-		userToken = jp1.get("jwtToken");
-		log.info("Received User Token" + userToken);
-		extentTest.log(LogStatus.INFO, "User Token:-  " + userToken);
-
-//		// Creating the Task response
-//		response = HttpOperation.create_Task(authToken, PayLoads.create_task_Payload(userToken, sheetName, testName));
-
-		// get the User Token
-		JsonPath jp2 = ReusableMethods.rawToJson(response);
-		taskid = jp2.get("task.id");
-		log.info("Received Task ID" + taskid);
-		extentTest.log(LogStatus.INFO, "Task ID:-  " + taskid);
+		taskid = jp1.get("id");
+		log.info("Received Task ID:-  " + taskid);
+		extentTest.log(LogStatus.INFO, "TASK ID :-  " + taskid);
 
 		// Response to edit the task
-		response = HttpOperation.edit_Task(authToken, PayLoads.edittask_Payload(userToken, taskid,sheetName, testName));
+		response = HttpOperation.edit_Task(authToken,
+				PayLoads.edittask_Payload(userToken, taskid, sheetName, testName));
 		log.info("Response received for edit the task");
 		extentTest.log(LogStatus.INFO, "Response received to edit the task:- " + response.asString());
 
 		// Assertion
-
 		Assert.assertEquals(response.getStatusCode(), 200);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
+
+		// Response to delete the task
+		response = HttpOperation.delete_Task(authToken,
+				PayLoads.deletetask_Payload(userToken, taskid, sheetName, testName));
+		log.info("Response received for delete the task" + response.asString());
+
+		// Assertion
+		Assert.assertEquals(response.getStatusCode(), 204);
 
 	}
 

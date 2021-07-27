@@ -3,14 +3,16 @@ package com.todo.utils;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import com.todo.tests.BaseTest;
 
 public class PayLoads extends BaseTest {
-	public static String sheetName = "Auth_Data";
+	
 
 //---------------------Get access token payload-----------------
-	public static Map<String, Object> createAuthToken_Payload() {
-		String testName = "Valid Scenario- valid Username & Password";
+	public static Map<String, Object> createAuthToken_Payload(ExtentTest extentTest, String sheetName, String testName) {
+		
 
 		// Fetching Data from Excel File
 		HashMap<String, String> testData = new HashMap<String, String>();
@@ -21,6 +23,7 @@ public class PayLoads extends BaseTest {
 		CommonUtils.toCheckExecutionRequired(executionRequired);
 		log.info("Username:-  " + username);
 		log.info("Password:- " + pwd);
+		extentTest.log(LogStatus.INFO, "Username:- " +username +"\t Password:- " +pwd );
 
 		Map<String, Object> jsonBody = new HashMap<String, Object>();
 		jsonBody.put("username", username);
@@ -139,5 +142,24 @@ public class PayLoads extends BaseTest {
 
 		return jsonBody;
 	}
+	
+	// Fetch all user task
+	
+	public static Map<String, Object> fetchAllTask(String user_token, String sheetName, String testName) {
 
+		// Fetching Data from Excel File
+		HashMap<String, String> testData = new HashMap<String, String>();
+		testData = CommonUtils.reader.getRowTestData(sheetName, testName);
+		String executionRequired = testData.get("Execution Required").toLowerCase();
+		String email = testData.get("Email");
+		CommonUtils.toCheckExecutionRequired(executionRequired);
+		log.info(testData);
+
+		// Converting the data into JSON format
+		Map<String, Object> jsonBody = new HashMap<String, Object>();
+		jsonBody.put("jwt", user_token);
+		jsonBody.put("email", email);
+
+		return jsonBody;
+	}
 }

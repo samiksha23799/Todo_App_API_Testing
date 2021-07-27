@@ -3,15 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.todo.tests.EditTask">
+      <class name="com.todo.tests.Fetch_All_Task">
         <methods>
+          <include name="invalid_fetch_Task"/>
           <include name="endReport"/>
-          <include name="edit_Task"/>
           <include name="setExtent"/>
           <include name="baseURI"/>
           <include name="getResult"/>
         </methods>
-      </class> <!-- com.todo.tests.EditTask -->
+      </class> <!-- com.todo.tests.Fetch_All_Task -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
