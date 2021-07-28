@@ -32,8 +32,8 @@ public class HttpOperation extends BaseTest {
 	public static Response hello(String authToken) {
 		// getting response
 		RequestSpecification httpRequest = RestAssured.given();
-		log.info("Request Sent to Create User");
-		extentTest.log(LogStatus.INFO, "Request Sent to Create User :- " + httpRequest);
+		log.info("Request Sent to Get hello message");
+		extentTest.log(LogStatus.INFO, "Request Sent to Get hello message :- " + httpRequest);
 		Response response = httpRequest.header("Content-Type", "application/json")
 				.header("Authorization", "Bearer " + authToken).when()
 				.get(BaseTest.prop.getProperty("Hello_Endpoint")).then().log().all().extract().response();
@@ -81,21 +81,13 @@ public class HttpOperation extends BaseTest {
 		return response;
 	}
 
-	public static Response delete_Task(int taskID, String authToken, String userToken, String sheetName,
-			String testName) {
-		// Fetching Data from Excel File
-		HashMap<String, String> testData = new HashMap<String, String>();
-		testData = CommonUtils.reader.getRowTestData(sheetName, testName);
-		String executionRequired = testData.get("Execution Required").toLowerCase();
-		String Email = testData.get("Email");
-		CommonUtils.toCheckExecutionRequired(executionRequired);
-		
+	public static Response delete_Task(int taskID, String authToken, Map<String, Object> jsonBody) {		
 		// getting response
 		RequestSpecification httpRequest = RestAssured.given();
 		log.info("Request Sent to delete Task");
 		extentTest.log(LogStatus.INFO, "Request Sent to delete Task:- " + httpRequest);
 		
-		Response response =httpRequest.queryParam("token", userToken).queryParam("email", Email)
+		Response response =httpRequest.body(jsonBody)
 				.header("Content-Type", "application/json")
 				.header("Authorization", "Bearer " + authToken).when()
 				.delete(BaseTest.prop.getProperty("DeleteTask_EndPoint") + taskid).then().log().all().extract()
@@ -111,7 +103,7 @@ public class HttpOperation extends BaseTest {
 		extentTest.log(LogStatus.INFO, "Request Sent to edit Task:- " + httpRequest);
 		Response response = httpRequest.body(jsonBody).header("Content-Type", "application/json")
 				.header("Authorization", "Bearer " + authToken).when()
-				.post(BaseTest.prop.getProperty("EditTask_EndPoint")).then().log().all().extract().response();
+				.put(BaseTest.prop.getProperty("EditTask_EndPoint")).then().log().all().extract().response();
 
 		return response;
 	}

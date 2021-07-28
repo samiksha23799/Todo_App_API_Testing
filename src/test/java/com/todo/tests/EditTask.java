@@ -69,7 +69,7 @@ public class EditTask extends BaseTest {
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 
 		// Response to delete the task
-		response = HttpOperation.delete_Task(taskid, authToken, userToken, sheetName, testName);
+		response = HttpOperation.delete_Task(taskid, authToken, PayLoads.deletetask_Payload(userToken, sheetName, testName));
 		log.info("Response received for delete the task" + response.asString());
 
 		// Assertion
