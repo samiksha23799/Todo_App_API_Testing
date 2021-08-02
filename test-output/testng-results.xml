@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="3" total="4" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="4679" started-at="2021-07-28T11:22:50Z" finished-at="2021-07-28T11:22:54Z">
+  <suite name="Default suite" duration-ms="6233" started-at="2021-08-02T08:01:22Z" finished-at="2021-08-02T08:01:28Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="4679" started-at="2021-07-28T11:22:50Z" finished-at="2021-07-28T11:22:54Z">
-      <class name="com.todo.tests.EditTask">
-        <test-method status="PASS" signature="setExtent()[pri:0, instance:com.todo.tests.EditTask@2ef3eef9]" name="setExtent" is-config="true" duration-ms="175" started-at="2021-07-28T11:22:49Z" finished-at="2021-07-28T11:22:50Z">
+    <test name="Default test" duration-ms="6233" started-at="2021-08-02T08:01:22Z" finished-at="2021-08-02T08:01:28Z">
+      <class name="com.todo.tests.CreateTask">
+        <test-method status="PASS" signature="setExtent()[pri:0, instance:com.todo.tests.CreateTask@50eac852]" name="setExtent" is-config="true" duration-ms="127" started-at="2021-08-02T08:01:22Z" finished-at="2021-08-02T08:01:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setExtent -->
-        <test-method status="PASS" signature="baseURI()[pri:0, instance:com.todo.tests.EditTask@2ef3eef9]" name="baseURI" is-config="true" duration-ms="691" started-at="2021-07-28T11:22:50Z" finished-at="2021-07-28T11:22:50Z">
+        <test-method status="PASS" signature="baseURI()[pri:0, instance:com.todo.tests.CreateTask@50eac852]" name="baseURI" is-config="true" duration-ms="597" started-at="2021-08-02T08:01:22Z" finished-at="2021-08-02T08:01:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- baseURI -->
-        <test-method status="PASS" signature="edit_Task()[pri:0, instance:com.todo.tests.EditTask@2ef3eef9]" name="edit_Task" duration-ms="3955" started-at="2021-07-28T11:22:50Z" finished-at="2021-07-28T11:22:54Z">
+        <test-method status="PASS" signature="create_Task()[pri:0, instance:com.todo.tests.CreateTask@50eac852]" name="create_Task" duration-ms="5601" started-at="2021-08-02T08:01:22Z" finished-at="2021-08-02T08:01:28Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- edit_Task -->
-        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.todo.tests.EditTask@2ef3eef9]" name="getResult" is-config="true" duration-ms="5" started-at="2021-07-28T11:22:54Z" finished-at="2021-07-28T11:22:54Z">
+        </test-method> <!-- create_Task -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:com.todo.tests.CreateTask@50eac852]" name="getResult" is-config="true" duration-ms="7" started-at="2021-08-02T08:01:28Z" finished-at="2021-08-02T08:01:28Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=edit_Task status=SUCCESS method=EditTask.edit_Task()[pri:0, instance:com.todo.tests.EditTask@2ef3eef9] output={null}]]]>
+                <![CDATA[[TestResult name=create_Task status=SUCCESS method=CreateTask.create_Task()[pri:0, instance:com.todo.tests.CreateTask@50eac852] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method status="PASS" signature="endReport()[pri:0, instance:com.todo.tests.EditTask@2ef3eef9]" name="endReport" is-config="true" duration-ms="477" started-at="2021-07-28T11:22:54Z" finished-at="2021-07-28T11:22:55Z">
+        <test-method status="PASS" signature="endReport()[pri:0, instance:com.todo.tests.CreateTask@50eac852]" name="endReport" is-config="true" duration-ms="579" started-at="2021-08-02T08:01:28Z" finished-at="2021-08-02T08:01:29Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport -->
-      </class> <!-- com.todo.tests.EditTask -->
+      </class> <!-- com.todo.tests.CreateTask -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

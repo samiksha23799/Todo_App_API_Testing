@@ -85,6 +85,7 @@ public class PayLoads extends BaseTest {
 		String email = testData.get("Email");
 		String taskName = testData.get("TaskName");
 		String priority = testData.get("Priority");
+		String date = testData.get("Duedate");
 
 		CommonUtils.toCheckExecutionRequired(executionRequired);
 		log.info(testData);
@@ -93,7 +94,7 @@ public class PayLoads extends BaseTest {
 		jsonBody.put("email", email);
 		jsonBody.put("taskName", taskName);
 		jsonBody.put("priority", priority);
-		jsonBody.put("dueDate", prop.getProperty("dueDate"));
+		jsonBody.put("dueDate", date);
 		return jsonBody;
 	}
 
@@ -107,6 +108,7 @@ public class PayLoads extends BaseTest {
 		String email = testData.get("Email");
 		String taskName = testData.get("TaskName");
 		String priority = testData.get("Priority");
+		String date = testData.get("Duedate");
 		CommonUtils.toCheckExecutionRequired(executionRequired);
 		log.info(testData);
 		
@@ -119,7 +121,7 @@ public class PayLoads extends BaseTest {
 		jsonBody.put("email", email);
 		jsonBody.put("taskName", taskName);
 		jsonBody.put("priority", priority);
-		jsonBody.put("dueDate", prop.getProperty("dueDate"));
+		jsonBody.put("dueDate", date);
 		return jsonBody;
 	}
 

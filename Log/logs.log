@@ -1,13 +1,17 @@
-2021-07-27 17:52:35,558  INFO [main] BaseTest:66 - Report Started
- 2021-07-27 17:52:36,280  INFO [main] BaseTest:59 - 
+2021-08-02 13:31:22,310  INFO [main] BaseTest:66 - Report Started
+ 2021-08-02 13:31:22,930  INFO [main] BaseTest:59 - 
 ============ New Test Case==============
 
- 2021-07-27 17:52:36,291  INFO [main] HelloController:23 - Welcome Test
- 2021-07-27 17:52:37,101  INFO [main] BaseTest:24 - Username:-  todolist
- 2021-07-27 17:52:37,102  INFO [main] BaseTest:25 - Password:- password
- 2021-07-27 17:52:37,307  INFO [main] HttpOperation:23 - Request Sent to to get access Token
- 2021-07-27 17:52:39,969  INFO [main] HelloController:34 - Token created
- 2021-07-27 17:52:39,969  INFO [main] HelloController:39 - Assertion Passed!!
- 2021-07-27 17:52:39,970  INFO [main] HttpOperation:35 - Request Sent to Create User
- 2021-07-27 17:52:40,035  INFO [main] HelloController:46 - Assertion Passed!!
+ 2021-08-02 13:31:22,937  INFO [main] CreateTask:27 - Valid Scenario: Create Task
+ 2021-08-02 13:31:23,675  INFO [main] BaseTest:24 - Username:-  todolist
+ 2021-08-02 13:31:23,676  INFO [main] BaseTest:25 - Password:- password
+ 2021-08-02 13:31:23,846  INFO [main] HttpOperation:23 - Request Sent to to get access Token
+ 2021-08-02 13:31:27,983  INFO [main] BaseTest:54 - {firstName=Ross, lastName=Gellar, password=Qwerty@123, email=ross.gellar@gmail.com}
+ 2021-08-02 13:31:27,985  INFO [main] HttpOperation:61 - Request Sent to Login User
+ 2021-08-02 13:31:28,188  INFO [main] CreateTask:36 - Response received for login
+ 2021-08-02 13:31:28,224  INFO [main] CreateTask:42 - Received User Token:- eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NzLmdlbGxhckBnbWFpbC5jb20iLCJleHAiOjE2MjgxMDcyODcsImlhdCI6MTYyNzg5MTI4N30.cxsLFGk2Y3_1NBCBYLyXomra7AFiV7kf7LU4Z7Xwkhg
+ 2021-08-02 13:31:28,278  INFO [main] BaseTest:91 - {=, Email=ross.gellar@gmail.com, Execution Required=yes, TaskName=Sample Task 1, Priority=8.0, TestCaseName=Valid Scenario- When all the data are valid, Duedate=2021-09-15}
+ 2021-08-02 13:31:28,280  INFO [main] HttpOperation:75 - Request Sent to create Task
+ 2021-08-02 13:31:28,529  INFO [main] CreateTask:48 - Response received to create the task
+ 2021-08-02 13:31:28,530  INFO [main] CreateTask:55 - Assertion Passed!!
  
