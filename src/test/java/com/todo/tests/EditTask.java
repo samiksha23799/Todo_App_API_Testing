@@ -44,12 +44,12 @@ public class EditTask extends BaseTest {
 
 		// get the User Token
 		JsonPath jp = ReusableMethods.rawToJson(response);
-		userToken = jp.get("jwtToken");
+		userToken = jp.get("jwt");
 		log.info("Received User Token:-  " + userToken);
 		extentTest.log(LogStatus.INFO, "User Token:-  " + userToken);
 
 		// Creating the Task response
-		response = HttpOperation.create_Task(authToken, PayLoads.create_task_Payload(userToken, sheetName, testName));
+		response = HttpOperation.create_Task(userToken, PayLoads.create_task_Payload(sheetName, testName));
 
 		// get the User Token
 		JsonPath jp1 = ReusableMethods.rawToJson(response);
@@ -58,8 +58,7 @@ public class EditTask extends BaseTest {
 		extentTest.log(LogStatus.INFO, "TASK ID :-  " + taskid);
 
 		// Response to edit the task
-		response = HttpOperation.edit_Task(authToken,
-				PayLoads.edittask_Payload(userToken, taskid, sheetName, testName));
+		response = HttpOperation.edit_Task(userToken, PayLoads.edittask_Payload( taskid, sheetName, testName));
 		log.info("Response received for edit the task");
 		extentTest.log(LogStatus.INFO, "Response received to edit the task:- " + response.asString());
 
@@ -69,11 +68,11 @@ public class EditTask extends BaseTest {
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 
 		// Response to delete the task
-		response = HttpOperation.delete_Task(taskid, authToken, PayLoads.deletetask_Payload(userToken, sheetName, testName));
+		response = HttpOperation.delete_Task(taskid, userToken);
 		log.info("Response received for delete the task" + response.asString());
 
 		// Assertion
-		Assert.assertEquals(response.getStatusCode(), 204);
+		Assert.assertEquals(response.getStatusCode(), 200);
 
 	}
 

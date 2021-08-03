@@ -198,7 +198,7 @@ public class UserController extends BaseTest {
 
 
 		// Assertion
-		Assert.assertEquals(response.getStatusCode(), 401);
+		Assert.assertEquals(response.getStatusCode(), 406);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 	}
@@ -222,7 +222,7 @@ public class UserController extends BaseTest {
 
 
 		// Assertion
-		Assert.assertEquals(response.getStatusCode(), 401);
+		Assert.assertEquals(response.getStatusCode(), 404);
 		log.info("Assertion Passed!!");
 		extentTest.log(LogStatus.INFO, "HTTP Status Code:- " + response.getStatusCode());
 	}

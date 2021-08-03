@@ -1,17 +1,16 @@
-2021-08-02 13:31:22,310  INFO [main] BaseTest:66 - Report Started
- 2021-08-02 13:31:22,930  INFO [main] BaseTest:59 - 
+2021-08-03 18:49:13,157  INFO [main] BaseTest:66 - Report Started
+ 2021-08-03 18:49:13,554  INFO [main] BaseTest:59 - 
 ============ New Test Case==============
 
- 2021-08-02 13:31:22,937  INFO [main] CreateTask:27 - Valid Scenario: Create Task
- 2021-08-02 13:31:23,675  INFO [main] BaseTest:24 - Username:-  todolist
- 2021-08-02 13:31:23,676  INFO [main] BaseTest:25 - Password:- password
- 2021-08-02 13:31:23,846  INFO [main] HttpOperation:23 - Request Sent to to get access Token
- 2021-08-02 13:31:27,983  INFO [main] BaseTest:54 - {firstName=Ross, lastName=Gellar, password=Qwerty@123, email=ross.gellar@gmail.com}
- 2021-08-02 13:31:27,985  INFO [main] HttpOperation:61 - Request Sent to Login User
- 2021-08-02 13:31:28,188  INFO [main] CreateTask:36 - Response received for login
- 2021-08-02 13:31:28,224  INFO [main] CreateTask:42 - Received User Token:- eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NzLmdlbGxhckBnbWFpbC5jb20iLCJleHAiOjE2MjgxMDcyODcsImlhdCI6MTYyNzg5MTI4N30.cxsLFGk2Y3_1NBCBYLyXomra7AFiV7kf7LU4Z7Xwkhg
- 2021-08-02 13:31:28,278  INFO [main] BaseTest:91 - {=, Email=ross.gellar@gmail.com, Execution Required=yes, TaskName=Sample Task 1, Priority=8.0, TestCaseName=Valid Scenario- When all the data are valid, Duedate=2021-09-15}
- 2021-08-02 13:31:28,280  INFO [main] HttpOperation:75 - Request Sent to create Task
- 2021-08-02 13:31:28,529  INFO [main] CreateTask:48 - Response received to create the task
- 2021-08-02 13:31:28,530  INFO [main] CreateTask:55 - Assertion Passed!!
+ 2021-08-03 18:49:13,559  INFO [main] Fetch_All_Task:33 - Valid Scenario: Fetch All User Task
+ 2021-08-03 18:49:14,067  INFO [main] BaseTest:24 - Username:-  todolist
+ 2021-08-03 18:49:14,067  INFO [main] BaseTest:25 - Password:- password
+ 2021-08-03 18:49:14,221  INFO [main] HttpOperation:23 - Request Sent to to get access Token
+ 2021-08-03 18:49:17,923  INFO [main] BaseTest:73 - {password=Qwerty@123, email=ross.gellar@gmail.com}
+ 2021-08-03 18:49:17,924  INFO [main] HttpOperation:61 - Request Sent to Login User
+ 2021-08-03 18:49:17,998  INFO [main] Fetch_All_Task:43 - Response received for login
+ 2021-08-03 18:49:18,028  INFO [main] Fetch_All_Task:49 - Received User Token:-  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb3NzLmdlbGxhckBnbWFpbC5jb20iLCJleHAiOjE2MjgyMTI3NTcsImlhdCI6MTYyNzk5Njc1N30.tlUZ0d8pnLeTWO5N3yKJ0T_PeGpJutT1ZYHCztprreg
+ 2021-08-03 18:49:18,030  INFO [main] HttpOperation:122 - Request Sent to fetch all user Task
+ 2021-08-03 18:49:18,146  INFO [main] Fetch_All_Task:54 - Response received to get all the user task
+ 2021-08-03 18:49:18,159  INFO [main] Fetch_All_Task:60 - Assertion Passed!!
  

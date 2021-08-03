@@ -44,12 +44,12 @@ public class FetchTask_By_ID extends BaseTest {
 
 		// get the User Token
 		JsonPath jp = ReusableMethods.rawToJson(response);
-		userToken = jp.get("jwtToken");
+		userToken = jp.get("jwt");
 		log.info("Received User Token:-  " + userToken);
 		extentTest.log(LogStatus.INFO, "User Token:-  " + userToken);
 
 		// Creating the Task response
-		response = HttpOperation.create_Task(authToken, PayLoads.create_task_Payload(userToken, task_sheetName, task_testName));
+		response = HttpOperation.create_Task(userToken, PayLoads.create_task_Payload(task_sheetName, task_testName));
 
 		// get the User Token
 		JsonPath jp1 = ReusableMethods.rawToJson(response);
@@ -58,9 +58,16 @@ public class FetchTask_By_ID extends BaseTest {
 		extentTest.log(LogStatus.INFO, "TASK ID :-  " + taskid);
 
 		// Response to edit the task
-		response = HttpOperation.fetch_Task_by_ID(taskid, authToken, userToken, task_sheetName, task_testName);
+		response = HttpOperation.fetch_Task_by_ID(taskid, userToken);
 		log.info("Response received to get all the user task");
 		extentTest.log(LogStatus.INFO, "Response received to get all the user task:- " + response.asString());
+
+		// Assertion
+		Assert.assertEquals(response.getStatusCode(), 200);
+
+		// Response to delete the task
+		response = HttpOperation.delete_Task(taskid, userToken);
+		log.info("Response received for delete the task" + response.asString());
 
 		// Assertion
 		Assert.assertEquals(response.getStatusCode(), 200);

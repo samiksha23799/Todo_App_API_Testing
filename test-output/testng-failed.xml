@@ -5,8 +5,8 @@
     <classes>
       <class name="com.todo.tests.CreateTask">
         <methods>
+          <include name="invalid_create_Task_dueDate"/>
           <include name="endReport"/>
-          <include name="create_Task"/>
           <include name="setExtent"/>
           <include name="baseURI"/>
           <include name="getResult"/>

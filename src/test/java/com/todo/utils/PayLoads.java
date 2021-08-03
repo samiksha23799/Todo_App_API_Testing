@@ -75,73 +75,47 @@ public class PayLoads extends BaseTest {
 	}
 
 // ----------------Task Controller Payload------------------
-
+	
 	// Create Task
-	public static Map<String, Object> create_task_Payload(String user_token, String sheetName, String testName) {
+	public static Map<String, Object> create_task_Payload(String sheetName, String testName) {
 		// Fetching Data from Excel File
 		HashMap<String, String> testData = new HashMap<String, String>();
 		testData = CommonUtils.reader.getRowTestData(sheetName, testName);
 		String executionRequired = testData.get("Execution Required").toLowerCase();
-		String email = testData.get("Email");
 		String taskName = testData.get("TaskName");
-		String priority = testData.get("Priority");
+		String priority = testData.get("Priority").split("\\.")[0];
 		String date = testData.get("Duedate");
 
 		CommonUtils.toCheckExecutionRequired(executionRequired);
 		log.info(testData);
 		Map<String, Object> jsonBody = new HashMap<String, Object>();
-		jsonBody.put("jwt", user_token);
-		jsonBody.put("email", email);
 		jsonBody.put("taskName", taskName);
-		jsonBody.put("priority", priority);
+		jsonBody.put("priority",priority );
 		jsonBody.put("dueDate", date);
 		return jsonBody;
 	}
 
 	// Edit Task
-	public static Map<String, Object> edittask_Payload(String user_token, int taskid, String sheetName, String testName) {
-
+	public static Map<String, Object> edittask_Payload( int taskid, String sheetName, String testName) {
 		// Fetching Data from Excel File
 		HashMap<String, String> testData = new HashMap<String, String>();
 		testData = CommonUtils.reader.getRowTestData(sheetName, testName);
 		String executionRequired = testData.get("Execution Required").toLowerCase();
-		String email = testData.get("Email");
 		String taskName = testData.get("TaskName");
-		String priority = testData.get("Priority");
+		String priority = testData.get("Priority").split("\\.")[0];
 		String date = testData.get("Duedate");
 		CommonUtils.toCheckExecutionRequired(executionRequired);
-		log.info(testData);
-		
+		log.info(testData);		
 
 		// Converting the data into JSON format
-
 		Map<String, Object> jsonBody = new HashMap<String, Object>();
-		jsonBody.put("jwt", user_token);
 		jsonBody.put("id", taskid);
-		jsonBody.put("email", email);
 		jsonBody.put("taskName", taskName);
 		jsonBody.put("priority", priority);
 		jsonBody.put("dueDate", date);
 		return jsonBody;
 	}
 
-	// Delete Task
-	public static Map<String, Object> deletetask_Payload(String user_token, String sheetName, String testName) {
 
-		// Fetching Data from Excel File
-		HashMap<String, String> testData = new HashMap<String, String>();
-		testData = CommonUtils.reader.getRowTestData(sheetName, testName);
-		String executionRequired = testData.get("Execution Required").toLowerCase();
-		String email = testData.get("Email");
-		CommonUtils.toCheckExecutionRequired(executionRequired);
-		log.info(testData);
-
-		// Converting the data into JSON format
-		Map<String, Object> jsonBody = new HashMap<String, Object>();
-		jsonBody.put("jwt", user_token);
-		jsonBody.put("email", email);
-
-		return jsonBody;
-	}
 	
 }

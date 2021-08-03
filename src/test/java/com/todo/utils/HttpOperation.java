@@ -69,82 +69,83 @@ public class HttpOperation extends BaseTest {
 
 //	****************************** TASK CONTROLLER ************************
 
-	public static Response create_Task(String authToken, Map<String, Object> jsonBody) {
+	public static Response create_Task(String userToken, Map<String, Object> jsonBody) {
 		// getting response
 		RequestSpecification httpRequest = RestAssured.given();
-		log.info("Request Sent to create Task");
+		log.info("Request Sent to create Task" + httpRequest.toString());
 		extentTest.log(LogStatus.INFO, "Request Sent to create Task:- " + httpRequest);
-		Response response = httpRequest.body(jsonBody).header("Content-Type", "application/json")
-				.header("Authorization", "Bearer " + authToken).when()
-				.post(BaseTest.prop.getProperty("CreateTask_EndPoint")).then().log().all().extract().response();
-
+		Response response = httpRequest.body(jsonBody)
+				.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + userToken)
+				.when()
+				.post(BaseTest.prop.getProperty("Task_EndPoint"))
+				.then().log().all().extract()
+				.response();
 		return response;
 	}
 
-	public static Response delete_Task(int taskID, String authToken, Map<String, Object> jsonBody) {		
+	public static Response delete_Task(int taskID, String userToken) {		
 		// getting response
 		RequestSpecification httpRequest = RestAssured.given();
 		log.info("Request Sent to delete Task");
 		extentTest.log(LogStatus.INFO, "Request Sent to delete Task:- " + httpRequest);
 		
-		Response response =httpRequest.body(jsonBody)
+		Response response =httpRequest
 				.header("Content-Type", "application/json")
-				.header("Authorization", "Bearer " + authToken).when()
-				.delete(BaseTest.prop.getProperty("DeleteTask_EndPoint") + taskid).then().log().all().extract()
+				.header("Authorization", "Bearer " + userToken).when()
+				.delete(BaseTest.prop.getProperty("Task_EndPoint") + taskid).then().log().all().extract()
 				.response();
 
 		return response;
 	}
 
-	public static Response edit_Task(String authToken, Map<String, Object> jsonBody) {
+	public static Response edit_Task(String userToken, Map<String, Object> jsonBody) {
 		// getting response
 		RequestSpecification httpRequest = RestAssured.given();
 		log.info("Request Sent to edit Task");
 		extentTest.log(LogStatus.INFO, "Request Sent to edit Task:- " + httpRequest);
-		Response response = httpRequest.body(jsonBody).header("Content-Type", "application/json")
-				.header("Authorization", "Bearer " + authToken).when()
-				.put(BaseTest.prop.getProperty("EditTask_EndPoint")).then().log().all().extract().response();
+		Response response = httpRequest.body(jsonBody)
+				.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + userToken)
+				.when()
+				.put(BaseTest.prop.getProperty("Task_EndPoint"))
+				.then().log().all().extract()
+				.response();
 
 		return response;
 	}
 
-	public static Response fetch_Task(String authToken, String userToken, String sheetName, String testName) {
-		// Fetching Data from Excel File
-		HashMap<String, String> testData = new HashMap<String, String>();
-		testData = CommonUtils.reader.getRowTestData(sheetName, testName);
-		String executionRequired = testData.get("Execution Required").toLowerCase();
-		String Email = testData.get("Email");
-		CommonUtils.toCheckExecutionRequired(executionRequired);
-
+	public static Response fetch_Task(String userToken) {
+	
 		// getting response
 		RequestSpecification httpRequest = RestAssured.given();
 		log.info("Request Sent to fetch all user Task");
 		extentTest.log(LogStatus.INFO, "Request Sent to fetch all user Task:- " + httpRequest);
 
-		Response response = httpRequest.queryParam("token", userToken).queryParam("email", Email)
-				.header("Content-Type", "application/json").header("Authorization", "Bearer " + authToken).when()
-				.get(BaseTest.prop.getProperty("Fetch_All_Task")).then().log().all().extract().response();
+		Response response = httpRequest
+				.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + userToken)
+				.when()
+				.get(BaseTest.prop.getProperty("Task_EndPoint"))
+				.then().log().all().extract().response();
 
 		return response;
 	}
 
-	public static Response fetch_Task_by_ID(int taskID, String authToken, String userToken, String sheetName,
-			String testName) {
-		// Fetching Data from Excel File
-		HashMap<String, String> testData = new HashMap<String, String>();
-		testData = CommonUtils.reader.getRowTestData(sheetName, testName);
-		String executionRequired = testData.get("Execution Required").toLowerCase();
-		String Email = testData.get("Email");
-		CommonUtils.toCheckExecutionRequired(executionRequired);
-
+	public static Response fetch_Task_by_ID(int taskID, String userToken) {
+	
 		// getting response
 		RequestSpecification httpRequest = RestAssured.given();
-		log.info("Request Sent to fetch all user Task");
-		extentTest.log(LogStatus.INFO, "Request Sent to fetch all user Task:- " + httpRequest);
+		log.info("Request Sent to fetch user Task by ID");
+		extentTest.log(LogStatus.INFO, "Request Sent to fetch user Task by ID:- " + httpRequest);
 
-		Response response = httpRequest.queryParam("token", userToken).queryParam("email", Email)
-				.header("Content-Type", "application/json").header("Authorization", "Bearer " + authToken).when()
-				.get(BaseTest.prop.getProperty("Fetch_Task_By_ID") + taskID).then().log().all().extract().response();
+		Response response = httpRequest
+				.header("Content-Type", "application/json")
+				.header("Authorization", "Bearer " + userToken)
+				.when()
+				.get(BaseTest.prop.getProperty("Task_EndPoint") + taskID)
+				.then().log().all().extract()
+				.response();
 
 		return response;
 	}
